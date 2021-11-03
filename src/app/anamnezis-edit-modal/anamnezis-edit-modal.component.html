@@ -1,0 +1,117 @@
+<div class="container">
+  <div class="modalWrapper">
+    <div class="navbar">
+      <img
+        class="closeButton"
+        src="assets/buttons/Close_button.svg"
+        alt="close button"
+        (click)="closeModal()"
+      />
+    </div>
+    <form [formGroup]="form">
+      <div class="form">
+        <div class="formElement">
+          <div class="titleContainer">
+            <p class="title">Űrlap mező típusa</p>
+          </div>
+          <select class="typeSelect" [formControlName]="'type'">
+            <option value="">Válassz egy opciót</option>
+            <option value="BOOLEAN">Igen/Nem</option>
+            <option value="TEXTAREA">Részletes</option>
+          </select>
+        </div>
+        <div class="formElement">
+          <div class="titleContainer">
+            <p class="title">Alapértelmezett állapot</p>
+          </div>
+          <div class="radioButtons">
+            <input
+              type="radio"
+              id="none"
+              value="0"
+              [formControlName]="'defaultValue'"
+            />
+            <label htmlFor="none">Nincs</label>
+            <input
+              type="radio"
+              id="yes"
+              value="1"
+              [formControlName]="'defaultValue'"
+            />
+            <label htmlFor="yes">Igen</label>
+            <input
+              type="radio"
+              id="nope"
+              value="2"
+              [formControlName]="'defaultValue'"
+            />
+            <label htmlFor="nope">Nem</label>
+          </div>
+        </div>
+        <div class="formElement">
+          <div class="switchElement">
+            <div class="titleContainer">
+              <p class="title">
+                Kitöltött állapotban jelentítse meg a bal oldali figyelmeztető
+                sávban a páciens kartonban
+              </p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <div class="formElement">
+          <div class="switchElement">
+            <div class="titleContainer">
+              <p class="title">Megjelenítés a Páciens Portálon</p>
+            </div>
+            <label class="switch">
+              <input type="checkbox" />
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form">
+        <div class="formElement">
+          <div class="titleContainer">
+            <p class="title">Mező elnevezése</p>
+          </div>
+          <div class="inputContainer">
+            <input
+              type="text"
+              class="textInput"
+              [formControlName]="'question'"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="buttons">
+      <button class="destructive" *ngIf="selected" (click)="onDelete()">
+        Mező törlése
+      </button>
+
+      <div class="rightButtons">
+        <button class="secondary" (click)="closeModal()">Mégsem</button>
+
+        <button class="primary" *ngIf="selected" (click)="onSave()">
+          Mentés
+        </button>
+
+        <button
+          class="primary"
+          [disabled]="form.invalid"
+          [ngStyle]="form.invalid ? { opacity: 0.3 } : { opacity: 1 }"
+          *ngIf="!selected"
+          (click)="onCreate()"
+        >
+          Létrehozás
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="imgContainer">
+    <img
+      src="assets/icons/Drag_handle.svg"
+      alt="drag handle"
+      class="dragHandle"
+    />
+  </div>
+  <div class="textContainer">
+    <div class="questionContainer">
+      <p class="question">{{ item?.question }}</p>
+      <app-list-item-buttons
+        [active]="item?.defaultValue"
+        (activeChanged)="onActiveChanged($event)"
+      ></app-list-item-buttons>
+    </div>
+    <div class="textAreaContainer">
+      <textarea
+        [ngClass]="active !== '1' ? 'textArea' : 'activeTextArea'"
+        [disabled]="active === '1' ? false : true"
+      ></textarea>
+    </div>
+  </div>
+  <div class="imgContainer">
+    <img
+      src="assets/icons/Edit_icon.svg"
+      class="editIcon"
+      alt="edit icon"
+      (click)="openEditModal()"
+    />
+  </div>
+</div>

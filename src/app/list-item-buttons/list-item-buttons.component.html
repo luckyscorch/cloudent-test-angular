@@ -1,0 +1,14 @@
+<div class="buttons">
+  <button
+    [ngClass]="active === '1' ? 'active' : 'button'"
+    (click)="changeActive('1')"
+  >
+    Igen
+  </button>
+  <button
+    [ngClass]="active === '2' ? 'active' : 'button'"
+    (click)="changeActive('2')"
+  >
+    Nem
+  </button>
+</div>

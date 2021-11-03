@@ -1,0 +1,24 @@
+<div class="container">
+  <div *ngFor="let item of items">
+    <app-list-item-boolean
+      *ngIf="item.type === 'BOOLEAN'"
+      [item]="item"
+      (modalEditEvent)="openModal($event)"
+    ></app-list-item-boolean>
+    <app-list-item-textarea
+      *ngIf="item.type === 'TEXTAREA'"
+      [item]="item"
+      (modalEditEvent)="openModal($event)"
+    ></app-list-item-textarea>
+  </div>
+  <div class="buttonContainer">
+    <button class="addButton" (click)="openModal()">
+      + Új mező hozzáadása
+    </button>
+  </div>
+  <app-anamnezis-edit-modal
+    *ngIf="showModal"
+    (modalCloseEvent)="closeModal()"
+    [selected]="selectedItem"
+  ></app-anamnezis-edit-modal>
+</div>
